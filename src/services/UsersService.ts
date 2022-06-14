@@ -3,6 +3,9 @@ import { User } from "../entities/User";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 class UsersService {
+  // findByEmail(email: any) {
+  //   throw new Error("Method not implemented.");
+  // }
   private usersRepository: Repository<User>
 
   constructor() {
@@ -23,6 +26,12 @@ class UsersService {
     });
 
     await this.usersRepository.save(user);
+
+    return user;
+  }
+
+  async findByEmail(email: string) {
+    const user = await this.usersRepository.findOne({ email });
 
     return user;
   }
